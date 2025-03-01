@@ -9,6 +9,13 @@ function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const onSubmit = (e) => {
+    const loginForm = document.getElementById('login_form');
+    let isFormValid = loginForm.checkValidity();
+    //if form is not valid, show the browser's default validation messages
+    if(!isFormValid) {
+        loginForm.reportValidity();
+        return;
+    }
     e.preventDefault();
     setLoading(true);
     setError("");
@@ -41,6 +48,8 @@ function Login() {
             id="username_sign_in"
             name="username_sign_in"
             required
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div className="input_container">
@@ -50,13 +59,16 @@ function Login() {
             id="pass_sign_in"
             name="pass_sign_in"
             required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <Button className="login_button" onClick={onSubmit}>
+        <Button type={'submit'} className="login_button" onClick={onSubmit} disabled={loading}>
           Log in
         </Button>
       <BreakLine text="or" width="90%" />
       <LoginWithThirdPartyButton
+        disabled={loading}
         icon={"/logo/github.png"}
         backgroundColor={"#24292E"}
         onClick={(e) => onClickParty(e,"Github")}
@@ -64,6 +76,7 @@ function Login() {
         Log in with GitHub
       </LoginWithThirdPartyButton>
       <LoginWithThirdPartyButton
+        disabled={loading}
         icon={"/logo/google.png"}
         backgroundColor={"#4285F4"}
         onClick={(e) => onClickParty(e,"Google")}

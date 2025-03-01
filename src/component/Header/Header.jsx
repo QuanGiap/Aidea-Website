@@ -7,7 +7,7 @@ function Header() {
     const {user} = useContext(Auth);
     const navigate = useNavigate();
   return (
-    <React.Fragment style={{backgroundColor:"white"}}>
+    <React.Fragment>
       <nav className="header_container">
         <img id="header_logo_img" src="logo/AIdea.png" alt="AIDea logo" />
         <div id="header_navigation_container">

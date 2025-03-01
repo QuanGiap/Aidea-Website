@@ -10,6 +10,14 @@ function SignUp() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const onSubmit = (e) => {
+    const signUpForm = document.getElementById('signup_form');
+    const isFormValid = signUpForm.checkValidity();
+    //if form is not valid, show the browser's default validation messages
+    if(!isFormValid) {
+        signUpForm.reportValidity();
+        return;
+    }
+
     e.preventDefault();
     setLoading(true);
     setError("");
@@ -25,6 +33,7 @@ function SignUp() {
     // }
     console.log("Username:", username);
     console.log("Password:", password);
+    console.log("Email:", email);
     setLoading(false);
   };
   const onClickParty = (e,party) => {
@@ -42,6 +51,8 @@ function SignUp() {
             id="username_sign_up"
             name="username_sign_up"
             required
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div className="input_container">
@@ -51,6 +62,8 @@ function SignUp() {
             id="email_sign_up"
             name="email_sign_up"
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="input_container">
@@ -60,9 +73,11 @@ function SignUp() {
             id="pass_sign_up"
             name="pass_sign_up"
             required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <Button className="signup_button" onClick={onSubmit}>
+        <Button type={'submit'} className="signup_button" onClick={onSubmit} disabled={loading}>
           Sign Up
         </Button>
       <BreakLine text="or" width="90%" />
@@ -70,6 +85,7 @@ function SignUp() {
         icon={"/logo/github.png"}
         backgroundColor={"#24292E"}
         onClick={(e) => onClickParty(e,"Github")}
+        disabled={loading}
       >
        Sign up with GitHub
       </LoginWithThirdPartyButton>
@@ -78,6 +94,7 @@ function SignUp() {
         backgroundColor={"#4285F4"}
         onClick={(e) => onClickParty(e,"Google")}
         imgStyle={{backgroundColor:"white",borderRadius:"50%"}}
+        disabled={loading}
       >Sign up with Google
       </LoginWithThirdPartyButton>
       <div>already have an account? <span className="signup_nav_sign_in">Sign in</span></div>
