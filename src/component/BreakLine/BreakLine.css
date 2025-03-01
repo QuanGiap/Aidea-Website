@@ -1,0 +1,30 @@
+.breakline-out-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.breakline-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .breakline-container::before,
+  .breakline-container::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+  }
+  
+  .breakline-container::before {
+    margin-right: 10px;
+  }
+  
+  .breakline-container::after {
+    margin-left: 10px;
+  }
+  
+  .breakline-text {
+    white-space: nowrap;
+    font-size: 1.2em;
+  }

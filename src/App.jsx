@@ -5,14 +5,19 @@ import './App.css'
 import { Route, Routes } from 'react-router'
 import Home from './Page/Home/Home'
 import Header from './component/Header/Header'
+import Login from './Page/Login/Login'
+import SignUp from './Page/SignUp/SignUp'
+import Hub from './Page/Hub/Hub'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <Routes>
       <Route path='/' element={<Header />}>
       <Route index element={<Home />}/>
+      <Route path='login' element={<Login/>}/>
+      <Route path='sign_up' element={<SignUp/>}/>
+      <Route path='hub' element={<Hub/>}/>
       </Route>
     </Routes>
   )

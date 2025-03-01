@@ -1,0 +1,8 @@
+.custom_button{
+    background-image: linear-gradient(90deg, #15152B 0%, #012202 100%);
+    border-radius: 20px;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    letter-spacing: 3px;
+
+}

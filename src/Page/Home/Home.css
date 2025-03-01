@@ -18,13 +18,8 @@
     margin: 0 -0.5rem;
     margin-bottom: -2.5rem;
 }
-#home_learn_more_button{
-    background-image: linear-gradient(90deg, #15152B 0%, #012202 100%);
+.home_button{
     padding: 0.5em 4em;
     font-size: 1.5em;
-    letter-spacing: 3px;
-    border-radius: 20px;
     line-height: 39px;
-    border: 1px solid #ffffff;
-    cursor: pointer;
 }

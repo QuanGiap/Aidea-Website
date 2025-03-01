@@ -1,0 +1,22 @@
+.login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    position: relative;
+  }
+  
+  .login-button-icon {
+    height: 80%;
+    position: absolute;
+    left: 10px;
+  }
+  
+  .login-button-text {
+    white-space: nowrap;
+  }
