@@ -4,13 +4,16 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { Route, Routes } from 'react-router'
 import Home from './Page/Home/Home'
+import Header from './component/Header/Header'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <Routes>
+      <Route path='/' element={<Header />}>
       <Route index element={<Home />}/>
+      </Route>
     </Routes>
   )
 }
