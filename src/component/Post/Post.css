@@ -32,16 +32,16 @@
     margin: 20px 0;
 }
 .post_body.fade-top{
-    mask-image: linear-gradient(transparent, black 10%, black 100%);
-    -webkit-mask-image: linear-gradient(transparent, black 10%, black 100%);
+    mask-image: linear-gradient(transparent, black 20%, black 100%);
+    -webkit-mask-image: linear-gradient(transparent, black 20%, black 100%);
 }
 .post_body.fade-bottom{
     mask-image: linear-gradient(black, black 80%, transparent 100%);;
     -webkit-mask-image: linear-gradient(black, black 80%, transparent 100%);
 }
 .post_body.fade-top.fade-bottom{
-    mask-image: linear-gradient(transparent, black 10%, black 80%, transparent 100%);;
-    -webkit-mask-image: linear-gradient(transparent, black 10%, black 80%, transparent 100%);
+    mask-image: linear-gradient(transparent, black 20%, black 80%, transparent 100%);;
+    -webkit-mask-image: linear-gradient(transparent, black 20%, black 80%, transparent 100%);
 }
 .post_tilte{
     background: linear-gradient(90deg, #68FF5B 0%, #4285F4 100%);
