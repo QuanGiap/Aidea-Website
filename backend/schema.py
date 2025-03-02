@@ -5,4 +5,11 @@ class CreateUser(BaseModel):
     email: EmailStr
     password: str
 
+class LoginUser(BaseModel):
+    username: str
+    password:str
 
+class CreateComment(BaseModel):    
+    body: str
+    post_id: int
+    
