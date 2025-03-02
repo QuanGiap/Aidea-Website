@@ -216,7 +216,12 @@ async def get_comments_from_post(post_id: int, db: Session = Depends(get_db)):
                 "post_id": comment.problem_id,
                 "user_id": comment.user_id,
                 "created_at": comment.created_at,
-                "username": comment.user.username 
+                "username": comment.user.username, 
+                "comment_upvotes": comment.upvotes,
+                "post_title": comment.problem.title,
+                "category": comment.problem.category,
+                "post_upvotes": comment.problem.upvotes,
+                "post_url": comment.problem.url
             }
             for comment in comments
         ]
@@ -242,8 +247,9 @@ async def get_comments(db: Session = Depends(get_db)):
                 "body": comment.comment_text,
                 "post_id": comment.problem_id,
                 "user_id": comment.user_id,
-                "created_at": comment.created_at,  # Assuming you have a created_at field
-                "username": comment.user.username  # Assuming you have a User model and relationship defined
+                "created_at": comment.created_at,  
+                "username": comment.user.username,  
+                "upvotes": comment.upvotes
             }
             comment_list.append(comment_data)
 
@@ -265,6 +271,11 @@ async def post_comment(comment: schema.CreateComment, db: Session = Depends(get_
     
     return {"message": "Comment created successfully", 
             "comment": {"id": new_comment.id, "text": new_comment.comment_text, "user_id": new_comment.user_id, "post_id": new_comment.problem_id}}
+
+@app.post("post/upvotes/{post_id}")
+
+@app.post("comment/upvotes/{comment_id}")
+
 @app.get("/")
 async def root():
     return {"message: hello world"}
