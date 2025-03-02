@@ -20,7 +20,7 @@ function Hub() {
         const posts = await fetchPosts(); // Use the fetchPosts function
         const result = posts.map((val) => ({
           ...val,
-          platform: 'reddit', // You can add platform or other properties
+          platform: 'github', // You can add platform or other properties
           liked: false, // Initial liked state
         }));
         setData(result); // Set the posts in state
