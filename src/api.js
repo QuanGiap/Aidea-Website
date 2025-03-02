@@ -66,6 +66,19 @@ const api = axios.create({
       throw error;
     }
   };
+
+  export const getUserInfo = async () =>{
+    try {
+      const response = await api.get(
+        "/verify-token/"+localStorage.getItem("token")
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Login error:", error.response?.data?.detail || error.message);
+      throw error;
+    }
+  }
+
   export const getCommentsById = async (id)=>{
     try{
       const res = await api.get("/comments/"+id);

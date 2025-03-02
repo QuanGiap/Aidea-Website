@@ -42,7 +42,7 @@ const categoriesArray = [
     font: "white",
   },
   {
-    type: "other",
+    type: "others",
     backGroundColor1: "#AFAFAF",
     backGroundColor2: "#5E5E5E",
     font: "white",
@@ -91,8 +91,8 @@ const categoriesObj = {
     backGroundColor2: "#68FF5B",
     font: "white",
   },
-  other: {
-    type: "other",
+  others: {
+    type: "others",
     backGroundColor1: "#AFAFAF",
     backGroundColor2: "#5E5E5E",
     font: "white",
