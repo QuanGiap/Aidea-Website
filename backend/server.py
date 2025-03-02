@@ -17,14 +17,6 @@ logging.basicConfig(level=logging.INFO)
 logging.getLogger('passlib').setLevel(logging.ERROR)
 logger = logging.getLogger(__name__)
 
-
-# **PRIORITY
-# get posts
-# signup
-# login
-# post comment
-
-
 # **IF HAVE TIME
 # delete comment 
 # edit/update comment
@@ -205,7 +197,7 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
 async def get_comments_from_post(post_id: int, db: Session = Depends(get_db)):
     try:
         comments = db.query(models.Comments).filter(models.Comments.problem_id == post_id).all()
-
+        post = db.query(models.Problems).filter(models.Comments.id == post_id).all()
         if not comments:
             raise HTTPException(status_code=404, detail="No comments found for this post")
 
@@ -213,24 +205,24 @@ async def get_comments_from_post(post_id: int, db: Session = Depends(get_db)):
             {
                 "comment_id": comment.id,
                 "body": comment.comment_text,
-                "post_id": comment.problem_id,
                 "user_id": comment.user_id,
                 "created_at": comment.created_at,
                 "username": comment.user.username, 
                 "comment_upvotes": comment.upvotes,
-                "post_title": comment.problem.title,
-                "category": comment.problem.category,
-                "post_upvotes": comment.problem.upvotes,
-                "post_url": comment.problem.url
             }
             for comment in comments
         ]
-
-        return {"post_id": post_id, "comments": comment_list}
+        post_result = {
+            "id":post.id,
+            "title":post.title,
+            "category": post.category,
+            "url": post.url,
+            "upvotes": post.upvotes,
+        }
+        return {"post_id": post_id, "comments": comment_list,"post":post_result}
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
 
 @app.get("/comments")
 async def get_comments(db: Session = Depends(get_db)):
