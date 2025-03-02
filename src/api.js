@@ -17,12 +17,14 @@ const api = axios.create({
     }
   };
 
-  export const userSignup = async (userData) => {
-    try {
-      const response = await api.post('/signup', userData);
-      return response.data;  
-    } catch (error) {
-      console.error('Error signing up:', error);
+ export const userSignup = async (userData) => {
+   try {
+     const formattedData = JSON.parse(JSON.stringify(userData)); // Ensures a consistent order
+     console.log("Sending signup request with data:", formattedData);
+     const response = await api.post('/signup', formattedData);
+     return response.data;
+   } catch (error) {
+      console.error('Error signing up:', error.response ? error.response.data : error.message);
       throw error;  
     }
   };
