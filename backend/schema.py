@@ -1,6 +1,8 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
-class ProblemBase(BaseModel):
-    title: str
-    body: str
+class CreateUser(BaseModel):
+    username: str
+    email: EmailStr
+    password: str
+
 
