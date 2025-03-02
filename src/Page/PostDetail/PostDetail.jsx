@@ -176,7 +176,6 @@ const PostDetail = () => {
       <div id="post_detail_ans_container">
         <div id="post_detail_ans_top_title">Top Answer</div>
         <div id="post_detail_ans_top_break_line"></div>
-        {/* Break line */}
         <div id="post_detail_ans_top_username">{data.comments[0].username}</div>
         <div className="post_detail_ans_top_body">{data.comments[0].body}</div>
       </div>

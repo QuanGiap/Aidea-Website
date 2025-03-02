@@ -5,10 +5,13 @@ import LoginWithThirdPartyButton from "../../component/LoginWithThirdPartyButton
 import "./Login.css";
 import { useContext, useState } from "react";
 import { Auth } from "../../context/AuthProvider";
+import { userLogin } from "../../api";
+
+
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("Error login");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const {login} = useContext(Auth);
   const onSubmit = async (e) => {
@@ -22,17 +25,16 @@ function Login() {
     }
     e.preventDefault();
     setLoading(true);
-    // try{
-    //   const result = await axios.post('http://localhost:8000/token',{
-    //     username,
-    //     password,
-    //   });
-    //   localStorage.setItem('token',result.data.access_token);
-    //   login(true);
-    // }catch(error){
-    //   setError('Error login');
-    //   console.log(error);
-    // }
+    try{
+      const result = await userLogin(username,password);
+      localStorage.setItem('token',result.access_token);
+      login(true);
+    }catch(error){
+      if(error.status===401){
+        setError('Wrong password or username');
+      }else setError('Error login');
+      console.log(error);
+    }
     setLoading(false);
   };
   const onClickParty = (e,party) => {
