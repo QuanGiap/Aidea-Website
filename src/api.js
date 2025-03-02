@@ -1,5 +1,4 @@
 import axios from 'axios';
-import qs from "qs";
 
 const api = axios.create({
     baseURL: 'https://aidea-backend.onrender.com', 
@@ -54,7 +53,7 @@ const api = axios.create({
     try {
       const response = await api.post(
         "/token",
-        qs.stringify({ username, password }), 
+        { username, password }, 
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -67,3 +66,12 @@ const api = axios.create({
       throw error;
     }
   };
+  export const getCommentsById = async (id)=>{
+    try{
+      const res = await api.get("/comments/"+id);
+      return res.data;
+    }catch (error) {
+      console.error("Unable to fetch comments:", error.response?.data?.detail || error.message);
+      throw error;
+    }
+  }
