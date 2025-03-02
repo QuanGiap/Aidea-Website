@@ -1,4 +1,5 @@
 import axios from 'axios';
+import qs from "qs";
 
 const api = axios.create({
     baseURL: 'https://aidea-backend.onrender.com', 
@@ -43,6 +44,24 @@ const api = axios.create({
     try {
       const response = await api.post("/login", { username, password }); 
       return response.data; 
+    } catch (error) {
+      console.error("Login error:", error.response?.data?.detail || error.message);
+      throw error;
+    }
+  };
+
+  export const loginForAccessToken = async (username, password) => {
+    try {
+      const response = await api.post(
+        "/token",
+        qs.stringify({ username, password }), 
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+      return response.data;
     } catch (error) {
       console.error("Login error:", error.response?.data?.detail || error.message);
       throw error;
