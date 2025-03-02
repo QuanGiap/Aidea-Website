@@ -8,7 +8,7 @@ import Header from './component/Header/Header'
 import Login from './Page/Login/Login'
 import SignUp from './Page/SignUp/SignUp'
 import Hub from './Page/Hub/Hub'
-import PostDetail from './Page/Post/PostDetail'
+import PostDetail from './Page/PostDetail/PostDetail'
 
 function App() {
 

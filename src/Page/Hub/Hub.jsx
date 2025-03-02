@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 const dummyData = [
     {
       id: '123456',
-      title: 'This is a title of the post',
+      title: 'This is a title of the post asdhoawhndoaihnswdfp aiosdjoapijwd adpiajwdp asiodpjawdpjm napisojdpaiw',
       description: "She was infatuated with color. She didn't have a favorite color per se, but she did have a fondness for teals and sea greens. You could see it in the clothes she wore that color was an important part of her overall style. She took great pride that color flowed from her and that color was always all around her. That is why, she explained to her date sitting across the table, that she could never have a serious relationship with him due to the fact that he was colorblind.",
       likeCount: 5,
       commentCount: 10,

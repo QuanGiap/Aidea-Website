@@ -29,12 +29,29 @@
     max-height: 200px;
     height: 200px;
     overflow-y: auto;
+    margin: 20px 0;
+}
+.post_body.fade-top{
+    mask-image: linear-gradient(transparent, black 10%, black 100%);
+    -webkit-mask-image: linear-gradient(transparent, black 10%, black 100%);
+}
+.post_body.fade-bottom{
+    mask-image: linear-gradient(black, black 80%, transparent 100%);;
+    -webkit-mask-image: linear-gradient(black, black 80%, transparent 100%);
+}
+.post_body.fade-top.fade-bottom{
+    mask-image: linear-gradient(transparent, black 10%, black 80%, transparent 100%);;
+    -webkit-mask-image: linear-gradient(transparent, black 10%, black 80%, transparent 100%);
 }
 .post_tilte{
     background: linear-gradient(90deg, #68FF5B 0%, #4285F4 100%);
+    font-size: 1.3rem;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    overflow: hidden; /* make sure it hides the content that overflows */
+    white-space: nowrap;
+    text-overflow: ellipsis; /* give the beautiful '...' effect */
 }
 .post_category{
     padding: 0.1em 0.8em;

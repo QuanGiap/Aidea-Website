@@ -4,6 +4,10 @@ import axios from 'axios';
 import './PostDetail.css';
 import { useParams } from 'react-router';
 
+// const dummyData = {
+//   title
+// }
+
 const PostDetail = () => {
   const { id } = useParams();
   const [post, setPost] = useState(null);
