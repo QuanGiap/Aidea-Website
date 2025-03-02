@@ -9,7 +9,7 @@ function Header() {
   return (
     <React.Fragment>
       <nav className="header_container">
-        <img id="header_logo_img" src="logo/AIdea.png" alt="AIDea logo" onClick={()=>navigate('')}/>
+        <img id="header_logo_img" src="/logo/AIdea.png" alt="AIDea logo" onClick={()=>navigate('')}/>
         <div id="header_navigation_container">
           <p className="header_nav" onClick={()=>navigate('hub')}>Hub</p>
           {user && [<p className="header_nav" onClick={()=>navigate('profile')}>Profile</p>,

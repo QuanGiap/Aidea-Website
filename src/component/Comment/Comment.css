@@ -1,0 +1,43 @@
+.comment_container {
+    padding: 10px;
+  }
+  
+  .comment_header {
+    display: flex;
+    margin-bottom: 5px;
+    gap: 5px;
+  }
+  
+  .comment_username {
+    font-weight: bold;
+  }
+  
+  .comment_date {
+    color: #888;
+  }
+  
+  .comment_body {
+    margin-bottom: 10px;
+  }
+  
+  .comment_footer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .like_button {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .like_button.liked {
+    color: #ff0000;
+  }
+  
+  .comment_upvotes {
+    color: #888;
+  }

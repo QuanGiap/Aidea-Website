@@ -1,33 +1,77 @@
-/* .post-detail-container {
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .post-detail-container h1 {
-    margin-bottom: 20px;
-  }
-  
-  .post-detail-container p {
-    margin-bottom: 20px;
-  }
-  
-  .post-detail-meta {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .post-detail-meta span {
-    font-weight: bold;
-  }
-  
-  .post-detail-container a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .post-detail-container a:hover {
-    text-decoration: underline;
-  } */
+#post_detail_container{
+  background-color: #282829;
+  margin: 50px auto;
+  max-width: 850px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#post_detail_title{
+  font-size: 2.1em;
+  border-bottom: 1px solid white;
+}
+#post_detail_info_group{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#post_detail_body_container, #post_detail_ans_container{
+  background-color: #1D1D1D;
+  padding: 20px;
+  min-height: 350px;
+  overflow-y: auto;
+}
+.post_detail_category_tab{
+  padding: 0.3em 2em;
+}
+#post_detail_interact_group{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+#post_detail_ans_container{
+  min-height: 200px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+#post_detail_ans_top_title{
+  width: max-content;
+  background: linear-gradient(90deg, #4E81E4 0%, #388332 100%);
+  font-size: 1.5rem;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#post_detail_ans_top_break_line{
+  border-bottom: 1px solid white;
+}
+#post_detail_ans_top_username{
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+#post_detail_input_conmment{
+  resize: none;
+  width: 98%;
+  padding: 1%;
+  background-color: #1D1D1D;
+}
+#post_detail_input_controler{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.post_detail_cancel_button, .post_detail_post_button{
+  font-size: 1.2em;
+  letter-spacing: 3px;
+}
+.post_detail_cancel_button{
+  padding: 0.3em 3em;
+}
+.post_detail_post_button{
+  padding: 0.3em 3em;
+}
