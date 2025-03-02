@@ -51,7 +51,7 @@ function Post({
           <OutlineIcon
             svgFile={"/svg/link.svg"}
             outlined
-            onClick={() => window.open(link)}
+            onClick={(e) => {e.stopPropagation();window.open(link)}}
           />
         </div>
       </div>
