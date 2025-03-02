@@ -6,6 +6,7 @@ import "./Login.css";
 import { useContext, useState } from "react";
 import { Auth } from "../../context/AuthProvider";
 import { userLogin } from "../../api";
+import { useNavigate } from "react-router";
 
 
 function Login() {
@@ -14,6 +15,7 @@ function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const {login} = useContext(Auth);
+  const navigate = useNavigate();
   const onSubmit = async (e) => {
     setError('');
     const loginForm = document.getElementById('login_form');
@@ -29,6 +31,7 @@ function Login() {
       const result = await userLogin(username,password);
       localStorage.setItem('token',result.access_token);
       login(true);
+      navigate('hub');
     }catch(error){
       if(error.status===401){
         setError('Wrong password or username');
