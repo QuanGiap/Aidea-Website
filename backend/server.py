@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 # update posts upvotes
 # update comment upvotes
 
-models.Base.metadata.create_all(bind=engine)
+# models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -161,8 +161,13 @@ def verify_token(token: str = Depends(oauth2_scheme)):
 
 @app.get("/verify-token/{token}")
 async def verify_user_token(token: str):
-    verify_token(token=token)
-    return {"message": "Token is valid"}
+    payload = verify_token(token=token)  
+    
+    username: str = payload.get("sub")
+    if not username:
+        raise HTTPException(status_code=403, detail="Token is invalid or expired")
+    
+    return {"message": "Token is valid", "username": username}
 
 
 @app.post('/login')
@@ -178,7 +183,7 @@ async def user_login(user: schema.LoginUser, db: Session = Depends(get_db)):
     access_token_expires = timedelta(minutes=30) 
     access_token = create_access_token(data={"sub": db_user.username}, expires_delta=access_token_expires)
 
-    return {"access_token": access_token, "token_type": "bearer"}
+    return {"access_token": access_token, "token_type": "bearer", "username": db_user.username}
 
 
 
@@ -196,10 +201,35 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
     except JWTError:
         raise HTTPException(status_code=403, detail="Token is invalid or expired")
     
+@app.get("/comments/{post_id}")
+async def get_comments_from_post(post_id: int, db: Session = Depends(get_db)):
+    try:
+        comments = db.query(models.Comments).filter(models.Comments.problem_id == post_id).all()
+
+        if not comments:
+            raise HTTPException(status_code=404, detail="No comments found for this post")
+
+        comment_list = [
+            {
+                "comment_id": comment.id,
+                "body": comment.comment_text,
+                "post_id": comment.problem_id,
+                "user_id": comment.user_id,
+                "created_at": comment.created_at,
+                "username": comment.user.username 
+            }
+            for comment in comments
+        ]
+
+        return {"post_id": post_id, "comments": comment_list}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/comments")
 async def get_comments(db: Session = Depends(get_db)):
     try:
-
         comments = db.query(models.Comments).all()
 
         if not comments:
