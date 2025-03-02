@@ -25,4 +25,5 @@ dist-ssr
 
 backend/__pycache__/
 .venv/
+
 .env

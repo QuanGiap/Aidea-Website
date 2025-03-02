@@ -42,3 +42,7 @@
     color: black;
     border-radius: 0.7em;
 }
+.error_message{
+    color: rgb(252, 82, 82);
+    font-size: 1.5em;
+}
