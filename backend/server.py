@@ -215,6 +215,7 @@ async def get_comments_from_post(post_id: int, db: Session = Depends(get_db)):
         post_result = {
             "id":post.id,
             "title":post.title,
+            "body":post.body,
             "category": post.category,
             "url": post.url,
             "upvotes": post.upvotes,
