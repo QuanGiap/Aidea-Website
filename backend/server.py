@@ -106,6 +106,28 @@ async def get_posts(db: Session = Depends(get_db)):
     except SQLAlchemyError as e:
         logger.error(f"Database error occurred: {e}")
         raise HTTPException(status_code=500, detail="Database error occurred") 
+    
+@app.get("/posts/{post_id}")
+async def get_post_by_id(post_id: int, db: Session = Depends(get_db)):
+    try:
+        post = db.query(models.Problems).filter(models.Problems.id == post_id).first()
+        if not post:
+            raise HTTPException(status_code=404, detail="No post found")
+        
+        post_result = {
+            "id":post.id,
+            "title":post.title,
+            "body":post.body,
+            "category": post.category,
+            "url": post.url,
+            "upvotes": post.upvotes,
+            "comments": post.comments
+        }
+        return post_result
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 @app.post("/signup")
 async def user_signup(user: schema.CreateUser, db: Session = Depends(get_db)):
