@@ -42,3 +42,7 @@
     color: black;
     border-radius: 0.7em;
 }
+.message{
+    color: rgb(204, 204, 204);
+    font-size: 1.5em;
+}

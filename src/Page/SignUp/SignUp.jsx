@@ -7,9 +7,9 @@ function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     const signUpForm = document.getElementById('signup_form');
     const isFormValid = signUpForm.checkValidity();
     //if form is not valid, show the browser's default validation messages
@@ -20,16 +20,19 @@ function SignUp() {
 
     e.preventDefault();
     setLoading(true);
-    setError("");
-    // if(username.length<5){
-    //     setError('Username must be at least 5 characters long');
-    //     setLoading(false);
-    //     return;
-    // }
-    // if(password.length<5){
-    //     setError('Password must be at least 5 characters long');
-    //     setLoading(false);
-    //     return;
+    setMessage("");
+    // try{
+    //   const result = await axios.post('http://localhost:8000/signup',{
+    //     username,
+    //     password,
+    //     email,
+    //   });
+    //   setMessage('Create account success, Please go to Login page')
+    //   // localStorage.setItem('token',result.data.access_token);
+    //   // login(true);
+    // }catch(error){
+    //   setMessage('Error Sign Up');
+    //   console.log(error);
     // }
     console.log("Username:", username);
     console.log("Password:", password);
@@ -80,6 +83,7 @@ function SignUp() {
         <Button type={'submit'} className="signup_button" onClick={onSubmit} disabled={loading}>
           Sign Up
         </Button>
+        {message && <div className="message">{message}</div>}
       <BreakLine text="or" width="90%" />
       <LoginWithThirdPartyButton
         icon={"/logo/github.png"}
