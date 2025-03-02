@@ -1,11 +1,21 @@
-import React from 'react';
-import './OutlineIcon.css';
+import React from "react";
+import "./OutlineIcon.css";
 
-const OutlineIcon = ({ svgFile, size = '24px', isOutlined = false, onClick }) => {
+const OutlineIcon = ({
+  svgFile,
+  size = "24px",
+  outlined = false,
+  onClick,
+  clickable = true,
+}) => {
   return (
-    <div 
-      className={`outline-icon ${isOutlined ? 'outlined' : ''}`} 
-      style={{ width: size, height: size }}
+    <div
+      className={`outline-icon ${outlined ? "outlined" : ""}`}
+      style={{
+        width: size,
+        height: size,
+        cursor: clickable ? "pointer" : "default",
+      }}
       onClick={onClick}
     >
       <img src={svgFile} alt="icon" className="outline-icon-img" />

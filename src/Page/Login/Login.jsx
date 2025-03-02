@@ -68,7 +68,6 @@ function Login() {
         <Button type={'submit'} className="login_button" onClick={onSubmit} disabled={loading}>
           Log in
         </Button>
-        <OutlineIcon svgFile={"/svg/Like.svg"}/>
       <BreakLine text="or" width="90%" />
       <LoginWithThirdPartyButton
         disabled={loading}

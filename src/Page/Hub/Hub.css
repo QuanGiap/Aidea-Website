@@ -1,0 +1,27 @@
+#hub_categories{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+}
+#hub_categories > *{
+    flex: 1 1 0px;
+}
+#hub_container{
+    padding: 50px 20px;
+}
+#title_hub{
+    font-size: 2em;
+    color: white;
+    text-align: center;
+    margin: 30px 0px;
+    text-transform: capitalize;
+}
+#post_containers{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    flex-direction: row;
+    justify-content: center;
+}

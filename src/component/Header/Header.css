@@ -1,5 +1,6 @@
 #header_logo_img{
     width: 5rem;
+    cursor: pointer;
 }
 .header_container{
     display: flex;
