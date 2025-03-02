@@ -11,5 +11,4 @@ class LoginUser(BaseModel):
 
 class CreateComment(BaseModel):    
     body: str
-    post_id: int
     

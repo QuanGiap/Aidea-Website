@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 # update posts upvotes
 # update comment upvotes
 
-# models.Base.metadata.create_all(bind=engine)
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -258,13 +258,13 @@ async def get_comments(db: Session = Depends(get_db)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.post("/comments")
-async def post_comment(comment: schema.CreateComment, db: Session = Depends(get_db), current_user: models.Users = Depends(get_current_user)):
-    post = db.query(models.Problems).filter(models.Problems.id == comment.post_id).first()
+@app.post("/comments/{post_id}")
+async def post_comment(post_id: int, comment: schema.CreateComment, db: Session = Depends(get_db), current_user: models.Users = Depends(get_current_user)):
+    post = db.query(models.Problems).filter(models.Problems.id == post_id).first()
     if not post:
         raise HTTPException(status_code=404, detail="Post not found")
     
-    new_comment = models.Comments(comment_text=comment.body, user_id=current_user.id, problem_id=comment.post_id)
+    new_comment = models.Comments(comment_text=comment.body, user_id=current_user.id, problem_id=post_id)
     db.add(new_comment)
     db.commit()
     db.refresh(new_comment)
@@ -272,9 +272,31 @@ async def post_comment(comment: schema.CreateComment, db: Session = Depends(get_
     return {"message": "Comment created successfully", 
             "comment": {"id": new_comment.id, "text": new_comment.comment_text, "user_id": new_comment.user_id, "post_id": new_comment.problem_id}}
 
-@app.post("post/upvotes/{post_id}")
+@app.patch("/post/upvotes/{post_id}")
+async def upvote_post(post_id: int, db: Session = Depends(get_db)):
+    post = db.query(models.Problems).filter(models.Problems.id == post_id).first()
+    if not post:
+        raise HTTPException(status_code=404, detail="Post not found")
 
-@app.post("comment/upvotes/{comment_id}")
+    post.upvotes += 1 
+    db.commit()  
+    db.refresh(post)  
+
+    return {"message": "Upvote added", "post_id": post_id, "upvotes": post.upvotes}
+
+
+
+@app.patch("/comment/upvotes/{comment_id}")
+async def upvote_post(comment_id: int, db: Session = Depends(get_db)):
+    comment = db.query(models.Comments).filter(models.Comments.id == comment_id).first()
+    if not comment:
+        raise HTTPException(status_code=404, detail="Comment not found")
+
+    comment.upvotes += 1 
+    db.commit()  
+    db.refresh(comment)  
+
+    return {"message": "Upvote added", "comment_id": comment_id, "upvotes": comment.upvotes}
 
 @app.get("/")
 async def root():

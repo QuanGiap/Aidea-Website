@@ -26,7 +26,7 @@ class Comments(Base):
     user_id = mapped_column(ForeignKey("users.id"))
     comment_text = Column(String,nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), server_default=text('now()'))
-    upvotes = Column(Integer)
+    upvotes = Column(Integer, default=0)
 
     problem = relationship("Problems", back_populates="comments")
     user = relationship("Users", back_populates="comments")
