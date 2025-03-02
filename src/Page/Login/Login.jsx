@@ -31,7 +31,7 @@ function Login() {
       const result = await userLogin(username,password);
       localStorage.setItem('token',result.access_token);
       login(true);
-      navigate('hub');
+      navigate('/hub');
     }catch(error){
       if(error.status===401){
         setError('Wrong password or username');
