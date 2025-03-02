@@ -70,7 +70,9 @@ def get_user_by_username(db: Session, username: str):
 
 
 origins = [
-    "http://localhost:5173"
+    "http://localhost:5173",
+    "https://aideaa.netlify.app/",
+    "https://aideaa.netlify.app"
 ]
 
 app.add_middleware(
