@@ -220,10 +220,22 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
 @app.get("/comments/{post_id}")
 async def get_comments_from_post(post_id: int, db: Session = Depends(get_db)):
     try:
-        comments = db.query(models.Comments).filter(models.Comments.problem_id == post_id).all()
         post = db.query(models.Problems).filter(models.Problems.id == post_id).first()
+        if not post:
+            raise HTTPException(status_code=404, detail="Post not found") 
+
+        post_result = {
+            "id": post.id,
+            "title": post.title,
+            "body": post.body,
+            "category": post.category,
+            "url": post.url,
+            "upvotes": post.upvotes,
+        }
+
+        comments = db.query(models.Comments).filter(models.Comments.problem_id == post_id).all()
         if not comments:
-            raise HTTPException(status_code=404, detail="No comments found for this post")
+            return {"post_id": post_id, "comments": [], "post": post_result} 
 
         comment_list = [
             {
@@ -231,23 +243,17 @@ async def get_comments_from_post(post_id: int, db: Session = Depends(get_db)):
                 "body": comment.comment_text,
                 "user_id": comment.user_id,
                 "created_at": comment.created_at,
-                "username": comment.user.username, 
+                "username": comment.user.username,
                 "comment_upvotes": comment.upvotes,
             }
             for comment in comments
         ]
-        post_result = {
-            "id":post.id,
-            "title":post.title,
-            "body":post.body,
-            "category": post.category,
-            "url": post.url,
-            "upvotes": post.upvotes,
-        }
-        return {"post_id": post_id, "comments": comment_list,"post":post_result}
+
+        return {"post_id": post_id, "comments": comment_list, "post": post_result}
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
 
 @app.get("/comments")
 async def get_comments(db: Session = Depends(get_db)):
