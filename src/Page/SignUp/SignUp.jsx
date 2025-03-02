@@ -83,7 +83,7 @@ function SignUp() {
       <BreakLine text="or" width="90%" />
       <LoginWithThirdPartyButton
         icon={"/logo/github.png"}
-        backgroundColor={"#24292E"}
+        backgroundColor={"#363D45"}
         onClick={(e) => onClickParty(e,"Github")}
         disabled={loading}
       >

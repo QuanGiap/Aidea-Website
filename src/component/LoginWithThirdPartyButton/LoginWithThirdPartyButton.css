@@ -9,6 +9,7 @@
     color: white;
     font-size: 16px;
     position: relative;
+    box-shadow: black 1px 1px 3px;
   }
   
   .login-button-icon {

@@ -4,5 +4,8 @@
     border: 1px solid #ffffff;
     cursor: pointer;
     letter-spacing: 3px;
-
+}
+.custom_button:hover{
+    background-image: linear-gradient(90deg, #4E81E4 0%, #68FF5B 100%);
+    color: #68FF5B;
 }

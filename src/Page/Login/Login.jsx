@@ -1,6 +1,8 @@
 import BreakLine from "../../component/BreakLine/BreakLine";
 import Button from "../../component/Button/Button";
+import Button2 from "../../component/Button2/Button2";
 import LoginWithThirdPartyButton from "../../component/LoginWithThirdPartyButton/LoginWithThirdPartyButton";
+import OutlineIcon from "../../component/OutlineIcon/OutLineIcon";
 import "./Login.css";
 import { useState } from "react";
 function Login() {
@@ -10,7 +12,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const onSubmit = (e) => {
     const loginForm = document.getElementById('login_form');
-    let isFormValid = loginForm.checkValidity();
+    const isFormValid = loginForm.checkValidity();
     //if form is not valid, show the browser's default validation messages
     if(!isFormValid) {
         loginForm.reportValidity();
@@ -66,11 +68,12 @@ function Login() {
         <Button type={'submit'} className="login_button" onClick={onSubmit} disabled={loading}>
           Log in
         </Button>
+        <OutlineIcon svgFile={"/svg/Like.svg"}/>
       <BreakLine text="or" width="90%" />
       <LoginWithThirdPartyButton
         disabled={loading}
         icon={"/logo/github.png"}
-        backgroundColor={"#24292E"}
+        backgroundColor={"#363D45"}
         onClick={(e) => onClickParty(e,"Github")}
       >
         Log in with GitHub
