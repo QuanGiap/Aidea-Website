@@ -70,7 +70,9 @@ def get_user_by_username(db: Session, username: str):
 
 
 origins = [
-    "http://localhost:5173"
+    "http://localhost:5173",
+    "https://aideaa.netlify.app/",
+    "https://aideaa.netlify.app"
 ]
 
 app.add_middleware(
@@ -219,7 +221,7 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
 async def get_comments_from_post(post_id: int, db: Session = Depends(get_db)):
     try:
         comments = db.query(models.Comments).filter(models.Comments.problem_id == post_id).all()
-        post = db.query(models.Problems).filter(models.Comments.id == post_id).first()
+        post = db.query(models.Problems).filter(models.Problems.id == post_id).first()
         if not comments:
             raise HTTPException(status_code=404, detail="No comments found for this post")
 
